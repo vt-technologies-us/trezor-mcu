@@ -6,6 +6,7 @@ Q := @
 endif
 
 PYTHON ?= python
+PYTHON3 ?= python3
 
 ifeq ($(EMULATOR),1)
 CC       ?= gcc
@@ -164,10 +165,10 @@ upload: sign
 	trezorctl firmware_update -f $(NAME).bin -s
 
 sign: $(NAME).bin
-	$(PYTHON) ../bootloader/firmware_sign.py -f $(NAME).bin
+	$(PYTHON3) ../bootloader/firmware_sign.py -f $(NAME).bin
 
 release: $(NAME).bin
-	$(PYTHON) ../bootloader/firmware_sign.py -f $(NAME).bin
+	$(PYTHON3) ../bootloader/firmware_sign.py -f $(NAME).bin
 	cp $(NAME).bin $(NAME)-$(APPVER).bin
 	chmod -x $(NAME)-$(APPVER).bin
 	xxd -p $(NAME)-$(APPVER).bin | tr -d '\n' > $(NAME)-$(APPVER).bin.hex
