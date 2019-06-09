@@ -110,7 +110,7 @@ OPTFLAGS ?= -Os
 ../vendor/trezor-crypto/bip39.o: OPTFLAGS = -O3
 ../vendor/trezor-crypto/ecdsa.o: OPTFLAGS = -O3
 ../vendor/trezor-crypto/sha2.o: OPTFLAGS = -O3
-../vendor/trezor-crypto/secp256k1.o: OPTFLAGS = -O3
+../vendor/trezor-crypto/firmwaresecp256k1.o: OPTFLAGS = -O3
 
 include ../Makefile.include
 
@@ -128,7 +128,7 @@ CFLAGS += -DUSE_MONERO=0
 
 %:: %.mako defs
 	@printf "  MAKO    $@\n"
-	$(Q)$(PYTHON) ../vendor/trezor-common/tools/cointool.py render $@.mako
+	$(Q)$(PYTHON3) ../vendor/trezor-common/tools/cointool.py render $@.mako
 
 bl_data.h: bl_data.py ../bootloader/bootloader.bin
 	@printf "  PYTHON  bl_data.py\n"
